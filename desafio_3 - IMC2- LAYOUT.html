@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <style>
+
+      body{
+	     font-family: "Trebuchet MS", Helvetica, sans-serif;
+	     background: #643d87 url(./imagens/fundo.jpg) no-repeat top center;
+       }
+
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
+
+.container {
+	width: 400px;
+	height: 300px;
+	background-color: rgba(255,255,255,0.3);
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin: 0 auto;
+	margin-top: 120px;
+	text-align: center;
+}
+
+.container img {
+	width: 120px;
+	height: 120px;
+	margin-top: -60px;
+	margin-bottom: 30px;
+}
+
+input {
+	height: 40px;
+	width: 80%;
+	font-size: 18px;
+	margin-bottom: 10px;
+	background-color: white;
+	padding-left: 40px;
+	border: none;
+	background-repeat: no-repeat;
+	background-position: 10px;
+}
+
+input.result {
+	color :#fff;
+	background-color: #f79300;
+  border: 2px solid #db7d00;
+	padding: 5px 20px;
+	height: 45px;
+	width: 90px;
+	background: -webkit-linear-gradient(to bottom, #faa600, #f68a00);
+	background: -moz-linear-gradient(to bottom, #faa600, #f68a00);
+	background: -o-linear-gradient(to bottom, #faa600, #f68a00);
+	background: linear-gradient(to bottom, #faa600, #f68a00);
+}
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Cálculo do IMC</h1>
+      <input type="text" id="nome" placeholder="Nome">
+      <input type="text" id="altura" placeholder="Altura (em cm)">
+      <input type="text" id="peso" placeholder="Peso">
+      <button onclick="calculateIMC()">Calcular IMC</button>
+      <div class="result">Resultado: <span id="result"></span></div>
+    </div>
+    <script>
+      function calculateIMC() {
+        var nome = document.getElementById("nome").value;
+        var alturacm = parseFloat(document.getElementById("altura").value);
+        var peso = parseFloat(document.getElementById("peso").value);
+
+        var alturam = alturacm / 100;
+        var imc = peso / (alturam * alturam);
+
+        var resultado;
+
+        if (imc < 16) {
+          resultado = "Baixo peso muito grave";
+        } else if (imc >= 16 && imc <= 16.99) {
+          resultado = "Baixo peso grave";
+        } else if (imc >= 17 && imc <= 18.49) {
+          resultado = "Baixo peso";
+        } else if (imc >= 18.5 && imc <= 24.99) {
+          resultado = "Peso normal";
+        } else if (imc >= 25 && imc <= 29.99) {
+          resultado = "Sobrepeso";
+        } else if (imc >= 30 && imc <= 34.99) {
+          resultado = "Obesidade grau I";
+        } else if (imc >= 35 && imc <= 39.99) {
+          resultado = "Obesidade grau II";
+        } else if (imc >= 40) {
+          resultado = "Obesidade grau III";
+        }
+
+        document.getElementById("result").innerHTML = resultado;
+      }
+    </script>
+  </body>
+</html>
